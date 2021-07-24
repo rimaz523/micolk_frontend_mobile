@@ -19,3 +19,10 @@ jobs:
       inputs:
         target: Android
         projectDirectory: '.'
+        
+    - task: CopyFiles@2
+      inputs:
+        contents: '**/*.apk'
+        targetFolder: '$(build.artifactStagingDirectory)'
+
+    - task: PublishBuildArtifacts@1
