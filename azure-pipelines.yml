@@ -66,3 +66,4 @@ stages:
                                 serverEndpoint: 'app-center-micolk-android-conn'
                                 appSlug: 'https://appcenter.ms/orgs/Mate.lk/apps/Mico.lk/'
                                 appFile: '$(Pipeline.Workspace)/drop/build/outputs/apk/release/app-release.apk'
+                                releaseNotesInput: 'mico.lk online marketplace'
