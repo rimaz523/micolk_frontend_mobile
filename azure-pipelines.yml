@@ -6,6 +6,9 @@ trigger:
             - master
             - develop
             - releases/*
+            
+variables:
+- group: MobileDeploymentVarGroup
 
 jobs:
   - job: Android
@@ -20,7 +23,17 @@ jobs:
     - task: FlutterBuild@0
       inputs:
         projectDirectory: '.'
-        
+
+    - task: AndroidSigning@3
+      displayName: 'Signing and aligning APK file(s) **/*.apk'
+      inputs:
+        apkFiles: '**/*.apk'
+        apksign: true
+        apksignerKeystoreFile: upload-keystore.jks
+        apksignerKeystorePassword: '$(AndroidKeyStorePassword)'
+        apksignerKeystoreAlias: '$(AndroidKeyAlias)'
+        apksignerKeyPassword: '$(AndroidKeyPassword)'
+    
     - task: CopyFiles@2
       inputs:
         contents: '**/*.apk'
