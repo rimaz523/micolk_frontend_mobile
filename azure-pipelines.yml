@@ -17,7 +17,6 @@ jobs:
     
     - task: FlutterBuild@0
       inputs:
-        target: Android
         projectDirectory: '.'
         
     - task: CopyFiles@2
