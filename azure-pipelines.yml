@@ -44,3 +44,25 @@ stages:
               targetFolder: '$(build.artifactStagingDirectory)'
 
           - task: PublishBuildArtifacts@1
+
+    - stage: 'Deploy'
+      displayName: 'Deploy the Android App'
+      dependsOn: Build
+      condition: and (succeeded(), eq(variables['Build.SourceBranchName'], 'develop'))
+      jobs:
+          - deployment: Deploy
+            pool:
+              vmImage: 'macOS-latest'
+            environment: Development
+            strategy:
+                runOnce:
+                    deploy:
+                        steps:
+                            - download: current
+                              artifact: drop
+                            
+                            - task: AppCenterDistribute@3
+                              inputs:
+                                serverEndpoint: 'app-center-micolk-android-conn'
+                                appSlug: 'https://appcenter.ms/orgs/Mate.lk/apps/Mico.lk/'
+                                appFile: '$(Pipeline.Workspace)/drop/build/outputs/apk/release/app-release.apk'
