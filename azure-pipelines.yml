@@ -17,5 +17,5 @@ jobs:
     
     - task: FlutterBuild@0
       inputs:
-        target: apk
+        target: Android
         projectDirectory: '.'
