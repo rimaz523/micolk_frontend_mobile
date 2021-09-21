@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:micolk_frontend_mobile/screens/home_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,39 +10,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mico.lk',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: MyHomePage(title: 'Mico.lk Online Marketplace'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Welcome to our marketplace.',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-            ),
-          ],
-        ),
-      ),
+      home: HomeScreen(),
     );
   }
 }
